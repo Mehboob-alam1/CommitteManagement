@@ -2,4 +2,27 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+
+        <color name="colorPrimary">#4b68ff</color>
+        <color name="colorPrimaryDark">#1976D2</color>
+        <color name="colorAccent">#1976D2</color>
+        <color name="colorBlackDark">#FF000000</color>
+
+        <!-- Colors for the light theme -->
+        <color name="colorPrimaryLight">#FFFFFF</color>
+        <color name="colorPrimaryDarkLight">#E0E0E0</color>
+        <color name="colorAccentLight">#1976D2</color>
+
+
+
+
+
+
+    <color name="color_text">#333333 </color>
+    <color name="color_text_grey">#666666</color>
+    <color name="color_background">#ffff</color>
+    <color name="color_button">#FF4081</color>
+
 </resources>
