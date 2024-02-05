@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "820867933403",
+    "project_id": "committemanagement-348c5",
+    "storage_bucket": "committemanagement-348c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820867933403:android:2a9a7a22c84a29470198fe",
+        "android_client_info": {
+          "package_name": "com.mehboob.committemanagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPddQzA98kmqyo-5OFI04dJw2R06URTFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
