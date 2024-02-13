@@ -30,7 +30,7 @@ public class CreateAcountActivity extends AppCompatActivity {
             finish();
         });
         binding.btnCreateAccount.setOnClickListener(v -> {
-          binding.loadingLayout.getRoot().setVisibility(View.VISIBLE);
+            binding.loadingLayout.getRoot().setVisibility(View.VISIBLE);
             if (binding.etFirstName.getText().toString().isEmpty()) {
                 binding.etFirstName.setError("First name");
                 binding.etFirstName.requestFocus();
@@ -69,10 +69,10 @@ public class CreateAcountActivity extends AppCompatActivity {
                             // Signup success, user is signed up
                             // You can access the authenticated user using authResult.getUser()
                             String userId = authResult.getUser().getUid();
-                            User user = new User(userId,username,firstname,lastname,email,phone,password);
+                            User user = new User(userId, username, firstname, lastname, email, phone, password);
                             authViewModel.saveUserData(user);
                             binding.loadingLayout.getRoot().setVisibility(View.VISIBLE);
-                            startActivity(new Intent(CreateAcountActivity.this,SuccessActivity.class));
+                            startActivity(new Intent(CreateAcountActivity.this, SuccessActivity.class));
                             finish();
                         } else {
                             // Signup failed, handle the error

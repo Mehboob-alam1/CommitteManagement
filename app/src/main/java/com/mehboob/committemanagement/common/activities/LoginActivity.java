@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         setContentView(binding.getRoot());
 
 
