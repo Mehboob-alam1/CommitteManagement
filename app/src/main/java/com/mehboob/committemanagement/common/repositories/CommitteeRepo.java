@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.mehboob.committemanagement.common.models.Committee;
@@ -16,11 +17,13 @@ public class CommitteeRepo {
     private FirebaseFirestore firestore;
     private MutableLiveData<Boolean> isAdded;
     private MutableLiveData<List<Committee>> committeesLiveData;
+    private MutableLiveData<List<String>> committeeMutableLiveData;
 
     public CommitteeRepo() {
         firestore = FirebaseFirestore.getInstance();
         isAdded = new MutableLiveData<>();
         committeesLiveData= new MutableLiveData<>();
+        committeeMutableLiveData= new MutableLiveData<>();
     }
 
     public MutableLiveData<Boolean> getIsAdded() {
@@ -68,5 +71,36 @@ public class CommitteeRepo {
         return committeesLiveData;
     }
 
+
+    public MutableLiveData<List<String>> getAnyCommitteeMembers(String committeeName){
+        firestore.collection("committees")
+                .document(committeeName)
+                .get()
+                .addOnCompleteListener(task -> {
+
+                    if (task.isComplete()){
+                        DocumentSnapshot document = task.getResult();
+
+                        if (document.exists()) {
+                            // Retrieve the 'members' field which is assumed to be an array
+                            List<String> members = (List<String>) document.get("committeeMembers");
+
+
+                            committeeMutableLiveData.setValue(members);
+                            // 'members' now contains the list of committee members
+                            Log.d("CommitteeMembers", "Members: " + members.toString());
+                        } else {
+                            Log.d("CommitteeMembers", "Committee document not found!");
+                        }
+
+                    }else{
+
+                    }
+                }).addOnFailureListener(e -> {
+                    Log.d("Error",e.getLocalizedMessage());
+                });
+
+        return  committeeMutableLiveData;
+    }
 
 }

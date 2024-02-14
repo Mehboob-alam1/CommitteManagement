@@ -49,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="start"
+                android:id="@+id/txtEmail"
                 android:fontFamily="@font/poppins_medium"
                 android:text="admin@gmail.com" />
         </LinearLayout>
@@ -115,6 +116,7 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:padding="16dp"
+                android:id="@+id/cardMyCommittee"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -126,14 +128,14 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/report"
+                        android:src="@drawable/people"
                         app:tint="@null" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Reports"
+                        android:text="My Committee"
                         android:textSize="18sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

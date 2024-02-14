@@ -54,4 +54,14 @@ public class Committee {
     public void setCommitteeMembers(List<String> committeeMembers) {
         this.committeeMembers = committeeMembers;
     }
+
+    @Override
+    public String toString() {
+        return "Committee{" +
+                "committeeName='" + committeeName + '\'' +
+                ", committeeMembersCount='" + committeeMembersCount + '\'' +
+                ", committeeSupervisor='" + committeeSupervisor + '\'' +
+                ", committeeMembers=" + committeeMembers +
+                '}';
+    }
 }

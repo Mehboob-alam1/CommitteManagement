@@ -37,6 +37,8 @@ public class ComitteesActivity extends AppCompatActivity {
         binding.recyclerCommittees.setAdapter(adapter);
         binding.recyclerCommittees.setLayoutManager(new LinearLayoutManager(this));
 
+
+
     }
 
     @SuppressLint("NotifyDataSetChanged")

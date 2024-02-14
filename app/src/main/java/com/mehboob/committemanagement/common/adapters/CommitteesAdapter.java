@@ -2,6 +2,7 @@ package com.mehboob.committemanagement.common.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.gson.Gson;
 import com.mehboob.committemanagement.R;
 import com.mehboob.committemanagement.common.models.Committee;
+import com.mehboob.committemanagement.members.MyCommitteeActivity;
 
 import java.util.List;
 
@@ -45,6 +48,13 @@ public class CommitteesAdapter extends RecyclerView.Adapter<CommitteesAdapter.Ho
         holder.txtCommitteeName.setText(committee.getCommitteeName());
         holder.txtCommitteInfo.setText("Superv: "+committee.getCommitteeSupervisor() +" , " +"Members: " +committee.getCommitteeMembersCount() );
 
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent i = new Intent(context, MyCommitteeActivity.class);
+            Gson gson= new Gson();
+            i.putExtra("data",gson.toJson(committee));
+            context.startActivity(i);
+        });
     }
 
     @Override

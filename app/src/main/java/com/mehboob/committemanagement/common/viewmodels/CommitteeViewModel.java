@@ -31,4 +31,8 @@ private MutableLiveData<Boolean> isAdded;
     public MutableLiveData<List<Committee>> getCommittees(){
        return committeeRepo.getCommittees();
     }
+
+    public MutableLiveData<List<String>> getAnyCommitteeMembers(String committeName){
+        return committeeRepo.getAnyCommitteeMembers(committeName);
+    }
 }
