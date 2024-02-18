@@ -26,6 +26,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
         <TextView
             android:id="@+id/txtCommitteeName"
             android:layout_width="wrap_content"
@@ -61,8 +63,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
 
             <TextView
@@ -78,11 +80,140 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/membersRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/membersRecyclerView"
-                tools:listitem="@layout/item_members"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_members" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Supervisor"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/member"
+                        app:tint="@null" />
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Mehboob Alam" />
+
+                    <TextView
+                        android:id="@+id/txtDesignation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Member" />
+                </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:padding="8dp"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/edit_text_back"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Add Agenda"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:padding="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/edit_text_back"
+                            android:layout_height="wrap_content"
+                            android:text="Add Report"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:padding="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/edit_text_back"
+                            android:layout_height="wrap_content"
+                            android:text="Add Event"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:padding="8dp"
+
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                          android:layout_weight="3"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Agendas"
+                            android:textSize="16sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/baseline_arrow_forward_ios_24"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
     </ScrollView>

@@ -42,6 +42,9 @@ private MemberAdapter adapter;
 
        committee=  gson.fromJson(getIntent, type);
 
+       binding.txtName.setText(committee.getCommitteeSupervisor());
+       binding.txtDesignation.setText("SuperVisor");
+
 
        bindData(committee);
 
