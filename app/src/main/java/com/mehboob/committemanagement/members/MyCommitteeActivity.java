@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.mehboob.committemanagement.common.models.Committee;
 import com.mehboob.committemanagement.common.viewmodels.AuthViewModel;
 import com.mehboob.committemanagement.common.viewmodels.CommitteeViewModel;
 import com.mehboob.committemanagement.databinding.ActivityMyCommitteeBinding;
+import com.mehboob.committemanagement.supervisor.AddAgendasActivity;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -49,6 +51,10 @@ private MemberAdapter adapter;
        bindData(committee);
 
        setRecyclerView();
+
+       binding.btnAddAgenda.setOnClickListener(v -> {
+           startActivity(new Intent(MyCommitteeActivity.this, AddAgendasActivity.class));
+       });
 
 
 
