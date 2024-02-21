@@ -53,7 +53,9 @@ private MemberAdapter adapter;
        setRecyclerView();
 
        binding.btnAddAgenda.setOnClickListener(v -> {
-           startActivity(new Intent(MyCommitteeActivity.this, AddAgendasActivity.class));
+           Intent i = new Intent(MyCommitteeActivity.this,AddAgendasActivity.class);
+           i.putExtra("comname",binding.txtCommitteeName.getText().toString());
+           startActivity(i);
        });
 
 

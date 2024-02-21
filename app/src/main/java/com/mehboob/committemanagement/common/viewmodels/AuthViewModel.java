@@ -1,6 +1,9 @@
 package com.mehboob.committemanagement.common.viewmodels;
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.AuthResult;
@@ -31,5 +34,13 @@ public class AuthViewModel extends ViewModel {
     }
     public LiveData<AuthResult> signUp(String email,String password){
         return authRepository.signUp(email,password);
+    }
+
+    public void uploadCommitteeAgendaImage(String agenda, Uri image,String committeeName){
+        userRepository.uploadCommitteeAgendaImage(agenda, image, committeeName);
+    }
+
+    public MutableLiveData<Boolean> getIfUpload() {
+        return userRepository.getIfUpload();
     }
 }

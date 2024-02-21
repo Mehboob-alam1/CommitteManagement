@@ -11,16 +11,18 @@ public class Committee {
 
     private List<String> committeeMembers;
 
+    private Agenda agenda;
 
     public Committee() {
     }
 
 
-    public Committee(String committeeName, String committeeMembersCount, String committeeSupervisor, List<String> committeeMembers) {
+    public Committee(String committeeName, String committeeMembersCount, String committeeSupervisor, List<String> committeeMembers,Agenda agenda) {
         this.committeeName = committeeName;
         this.committeeMembersCount = committeeMembersCount;
         this.committeeSupervisor = committeeSupervisor;
         this.committeeMembers = committeeMembers;
+        this.agenda= agenda;
     }
 
     public String getCommitteeName() {
@@ -45,6 +47,14 @@ public class Committee {
 
     public void setCommitteeSupervisor(String committeeSupervisor) {
         this.committeeSupervisor = committeeSupervisor;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
     }
 
     public List<String> getCommitteeMembers() {
