@@ -70,7 +70,8 @@ public class UserRepository {
 
         firestore.collection("committees")
                 .document(committeeName)
-                .set(data)
+                .update("agenda",data)
+
 
                 .addOnSuccessListener(documentReference -> {
                     // Document added successfully

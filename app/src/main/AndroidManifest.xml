@@ -17,11 +17,7 @@
         <activity
             android:name=".supervisor.AddEventsActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".supervisor.AddReportActivity"
@@ -48,7 +44,11 @@
             android:name=".common.activities.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".common.activities.MainActivity"
