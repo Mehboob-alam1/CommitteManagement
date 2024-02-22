@@ -6,169 +6,186 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <LinearLayout
 
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".supervisor.AddEventsActivity">
+          android:id="@+id/linearLayout3"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          tools:context=".supervisor.AddEventsActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/colorAccent">
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:background="@color/colorAccent">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+              <ImageView
+                  android:id="@+id/imageView2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
 
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/baseline_arrow_back_24"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                  android:layout_marginStart="8dp"
+                  android:layout_marginTop="3dp"
+                  android:layout_marginBottom="8dp"
+                  android:src="@drawable/baseline_arrow_back_24"
+                  android:visibility="gone"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Add  Event"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-
-
-                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/poppins_bold"
+                  android:text="Add  Event"
+                  android:textAlignment="center"
+                  android:textColor="@color/white"
+                  android:textSize="24sp"
+                  android:textStyle="bold"
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/etEventName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="12dp"
-            android:background="@drawable/edit_text_back"
-            android:fontFamily="@font/poppins_light"
-
-            android:hint="Event name"
-            android:padding="16dp"
+                  app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toEndOf="@+id/imageView2"
+                  app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
 
-            android:singleLine="true" />
+          </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/etEventVeneu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="@drawable/edit_text_back"
+          <EditText
+              android:id="@+id/etEventName"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
 
+              android:layout_margin="12dp"
+              android:background="@drawable/edit_text_back"
+              android:fontFamily="@font/poppins_light"
 
-            android:fontFamily="@font/poppins_light"
-
-
-            android:hint="Event venue"
-
-            android:padding="16dp"
-            android:singleLine="true" />
-
-        <EditText
-            android:id="@+id/etEventDescription"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="12dp"
-            android:layout_marginTop="16dp"
-
-            android:background="@drawable/edit_text_back"
-            android:fontFamily="@font/poppins_light"
-
-            android:gravity="top"
-            android:hint="Event venue"
-            android:inputType="textMultiLine"
+              android:hint="Event name"
+              android:padding="16dp"
 
 
-            android:padding="16dp" />
+              android:singleLine="true" />
+
+          <EditText
+              android:id="@+id/etEventVeneu"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="12dp"
+              android:background="@drawable/edit_text_back"
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/etEventDurations"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+              android:fontFamily="@font/poppins_light"
 
 
-                android:background="@drawable/edit_text_back"
+              android:hint="Event venue"
 
-                android:fontFamily="@font/poppins_light"
+              android:padding="16dp"
+              android:singleLine="true" />
 
-                android:hint="Event durations"
-                android:padding="16dp"
-                android:singleLine="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+          <EditText
+              android:id="@+id/etEventDescription"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_margin="12dp"
+              android:layout_marginTop="16dp"
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_back"
-                android:padding="19sp"
-                android:src="@drawable/baseline_calendar_month_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+              android:background="@drawable/edit_text_back"
+              android:fontFamily="@font/poppins_light"
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/etEventSupervisor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="@drawable/edit_text_back"
+              android:gravity="top"
+              android:hint="About Event"
+              android:inputType="textMultiLine"
 
 
-            android:fontFamily="@font/poppins_light"
+              android:padding="16dp" />
 
 
-            android:hint="Event supervisor"
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="12dp"
+              android:orientation="horizontal">
 
-            android:padding="16dp"
-            android:singleLine="true" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnConfirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="@drawable/edit_text_back"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Confirm"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+              <EditText
+                  android:id="@+id/etEventDurations"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_marginEnd="6dp"
 
 
-    </LinearLayout>
+                  android:background="@drawable/edit_text_back"
+
+                  android:fontFamily="@font/poppins_light"
+
+                  android:hint="Event durations"
+                  android:padding="16dp"
+                  android:singleLine="true"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent" />
+
+              <ImageView
+                  android:id="@+id/imageView3"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/edit_text_back"
+                  android:padding="19sp"
+                  android:src="@drawable/baseline_calendar_month_24"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintTop_toTopOf="parent" />
+
+          </androidx.constraintlayout.widget.ConstraintLayout>
+
+          <EditText
+              android:id="@+id/etEventSupervisor"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="12dp"
+              android:background="@drawable/edit_text_back"
+
+
+              android:fontFamily="@font/poppins_light"
+
+
+              android:hint="Event supervisor"
+
+              android:padding="16dp"
+              android:singleLine="true" />
+
+          <androidx.appcompat.widget.AppCompatButton
+              android:id="@+id/btnConfirm"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="12dp"
+              android:background="@drawable/edit_text_back"
+              android:backgroundTint="@color/colorAccent"
+              android:text="Confirm"
+              android:textAllCaps="false"
+              android:textColor="@color/white"
+              android:textStyle="bold" />
+
+
+      </LinearLayout>
+
+      <ProgressBar
+          android:id="@+id/progressBar"
+          android:visibility="gone"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

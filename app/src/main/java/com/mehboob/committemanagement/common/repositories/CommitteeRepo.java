@@ -2,12 +2,14 @@ package com.mehboob.committemanagement.common.repositories;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.mehboob.committemanagement.common.models.Committee;
+import com.mehboob.committemanagement.common.models.Event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +103,60 @@ public class CommitteeRepo {
                 });
 
         return  committeeMutableLiveData;
+    }
+
+
+    public LiveData<Boolean> addEvents(Event event, String comname){
+
+        MutableLiveData<Boolean> eventAddedLiveData = new MutableLiveData<>();
+
+        firestore.collection("committees")
+                .document(comname)
+                .collection("events")
+                .document(event.getEventId())
+                .set(event)
+                .addOnSuccessListener(aVoid -> {
+                    // Event added successfully
+                    eventAddedLiveData.postValue(true);
+                    Log.d("YourRepository", "Event added to Firestore");
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                    eventAddedLiveData.postValue(false);
+                    Log.e("YourRepository", "Error adding event to Firestore", e);
+                });
+
+
+        return eventAddedLiveData;
+    }
+
+
+    public LiveData<List<Event>> getEventsForCommittee(String committeeName) {
+        MutableLiveData<List<Event>> eventsLiveData = new MutableLiveData<>();
+
+        firestore.collection("committees")
+                .document(committeeName)
+                .collection("events")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<Event> eventsList = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        // Convert each document to your EventModel class (customize as per your needs)
+                        Event event = documentSnapshot.toObject(Event.class);
+                        eventsList.add(event);
+                    }
+
+                    // Update LiveData with the list of events
+                    eventsLiveData.postValue(eventsList);
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                    eventsLiveData.postValue(null);
+                    Log.e("YourRepository", "Error getting events from Firestore", e);
+                });
+
+        return eventsLiveData;
     }
 
 }

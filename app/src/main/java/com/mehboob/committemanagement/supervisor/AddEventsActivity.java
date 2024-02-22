@@ -1,6 +1,7 @@
 package com.mehboob.committemanagement.supervisor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -8,28 +9,85 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.mehboob.committemanagement.R;
+import com.mehboob.committemanagement.common.models.Event;
+import com.mehboob.committemanagement.common.viewmodels.AuthViewModel;
+import com.mehboob.committemanagement.common.viewmodels.CommitteeViewModel;
 import com.mehboob.committemanagement.databinding.ActivityAddEventsBinding;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.UUID;
 
 public class AddEventsActivity extends AppCompatActivity {
-    ActivityAddEventsBinding binding;
+  private   ActivityAddEventsBinding binding;
+  private String comname,superv;
+  private CommitteeViewModel committeeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddEventsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        committeeViewModel = new ViewModelProvider(this).get(CommitteeViewModel.class);
 
-        binding.imageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDateTimePickerDialog();
+
+        comname= getIntent().getStringExtra("comname");
+        superv= getIntent().getStringExtra("superv");
+
+
+        binding.etEventSupervisor.setText(superv);
+        binding.imageView3.setOnClickListener(v -> showDateTimePickerDialog());
+
+        binding.btnConfirm.setOnClickListener(v -> {
+            if(binding.etEventName.getText().toString().isEmpty()){
+                Toast.makeText(this, "Add Event name", Toast.LENGTH_SHORT).show();
+            }else if (binding.etEventVeneu.getText().toString().isEmpty()){
+                Toast.makeText(this, "Add Event Venue", Toast.LENGTH_SHORT).show();
+            }else if (binding.etEventDescription.getText().toString().isEmpty()){
+                Toast.makeText(this, "Add Event Description", Toast.LENGTH_SHORT).show();
+            } else if (binding.etEventDurations.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Add Event time and durations", Toast.LENGTH_SHORT).show();
+            } else if (binding.etEventSupervisor.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Add a supervisor", Toast.LENGTH_SHORT).show();
+            }else{
+                 binding.progressBar.setVisibility(View.VISIBLE);
+                String eventId= UUID.randomUUID().toString();
+                String eventName= binding.etEventName.getText().toString();
+                String eventVenue= binding.etEventVeneu.getText().toString();
+                String eventDesc= binding.etEventDescription.getText().toString();
+                String eventDuration= binding.etEventDurations.getText().toString();
+                String eventSuperVisor= binding.etEventSupervisor.getText().toString();
+
+
+                Event event= new Event(eventId,eventName,eventVenue,eventDesc,eventDuration,eventSuperVisor);
+
+
+                addEvent(event,comname);
+
+
+
             }
         });
+    }
+
+    private void addEvent(Event event, String comname) {
+
+
+        committeeViewModel.addEventToCommittee(comname,event)
+                .observe(this,aBoolean -> {
+                    binding.progressBar.setVisibility(View.GONE);
+                    if (aBoolean){
+                        Toast.makeText(this, "Event added", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this, "Event not added", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                });
+
     }
 
     private void showDateTimePickerDialog() {

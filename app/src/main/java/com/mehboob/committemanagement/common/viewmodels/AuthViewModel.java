@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
+import com.mehboob.committemanagement.common.models.Agenda;
 import com.mehboob.committemanagement.common.models.User;
 import com.mehboob.committemanagement.common.repositories.AuthenticationRepository;
 import com.mehboob.committemanagement.common.repositories.UserRepository;
@@ -15,6 +16,7 @@ import com.mehboob.committemanagement.common.repositories.UserRepository;
 public class AuthViewModel extends ViewModel {
     private AuthenticationRepository authRepository;
     private UserRepository userRepository;
+
 
     public AuthViewModel() {
         authRepository = new AuthenticationRepository();
@@ -42,5 +44,10 @@ public class AuthViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getIfUpload() {
         return userRepository.getIfUpload();
+    }
+
+    public MutableLiveData<Agenda> getAgenda(String committeeName) {
+    return userRepository.getAgenda(committeeName);
+
     }
 }

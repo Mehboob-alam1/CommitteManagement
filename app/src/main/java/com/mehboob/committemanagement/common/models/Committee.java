@@ -13,16 +13,28 @@ public class Committee {
 
     private Agenda agenda;
 
+    private Event event;
+
     public Committee() {
     }
 
 
-    public Committee(String committeeName, String committeeMembersCount, String committeeSupervisor, List<String> committeeMembers,Agenda agenda) {
+    public Committee(String committeeName, String committeeMembersCount, String committeeSupervisor, List<String> committeeMembers, Agenda agenda, Event event) {
         this.committeeName = committeeName;
         this.committeeMembersCount = committeeMembersCount;
         this.committeeSupervisor = committeeSupervisor;
         this.committeeMembers = committeeMembers;
-        this.agenda= agenda;
+        this.agenda = agenda;
+        this.event = event;
+    }
+
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     public String getCommitteeName() {

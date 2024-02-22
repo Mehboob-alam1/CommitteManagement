@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mehboob.committemanagement.R;
@@ -17,55 +18,82 @@ import com.mehboob.committemanagement.common.viewmodels.AuthViewModel;
 import com.mehboob.committemanagement.common.viewmodels.CommitteeViewModel;
 import com.mehboob.committemanagement.databinding.ActivityMyCommitteeBinding;
 import com.mehboob.committemanagement.supervisor.AddAgendasActivity;
+import com.mehboob.committemanagement.supervisor.AddEventsActivity;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MyCommitteeActivity extends AppCompatActivity {
-private ActivityMyCommitteeBinding binding;
-private String getIntent;
-private Gson gson;
-private Committee committee;
-private CommitteeViewModel committeeViewModel;
-private MemberAdapter adapter;
+    private ActivityMyCommitteeBinding binding;
+    private String getIntent;
+    private Gson gson;
+    private Committee committee;
+    private CommitteeViewModel committeeViewModel;
+    private AuthViewModel authViewModel;
+    private MemberAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityMyCommitteeBinding.inflate(getLayoutInflater());
+        binding = ActivityMyCommitteeBinding.inflate(getLayoutInflater());
         committeeViewModel = new ViewModelProvider(this).get(CommitteeViewModel.class);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
 
         setContentView(binding.getRoot());
-        gson= new Gson();
+        gson = new Gson();
 
-        getIntent=getIntent().getStringExtra("data");
+        getIntent = getIntent().getStringExtra("data");
 
-        Type type = new TypeToken<Committee>() {}.getType();
+        Type type = new TypeToken<Committee>() {
+        }.getType();
 
-       committee=  gson.fromJson(getIntent, type);
+        committee = gson.fromJson(getIntent, type);
 
-       binding.txtName.setText(committee.getCommitteeSupervisor());
-       binding.txtDesignation.setText("SuperVisor");
+        binding.txtName.setText(committee.getCommitteeSupervisor());
+        binding.txtDesignation.setText("SuperVisor");
 
 
-       bindData(committee);
+        bindData(committee);
 
-       setRecyclerView();
+        setRecyclerView();
 
-       binding.btnAddAgenda.setOnClickListener(v -> {
-           Intent i = new Intent(MyCommitteeActivity.this,AddAgendasActivity.class);
-           i.putExtra("comname",binding.txtCommitteeName.getText().toString());
-           startActivity(i);
-       });
+        binding.btnAddAgenda.setOnClickListener(v -> {
+            Intent i = new Intent(MyCommitteeActivity.this, AddAgendasActivity.class);
+            i.putExtra("comname", binding.txtCommitteeName.getText().toString());
+            startActivity(i);
+        });
 
+        binding.btnAddEvent.setOnClickListener(v -> {
+            Intent i = new Intent(MyCommitteeActivity.this, AddEventsActivity.class);
+            i.putExtra("comname", binding.txtCommitteeName.getText().toString());
+            i.putExtra("superv", committee.getCommitteeSupervisor());
+            startActivity(i);
+        });
+
+
+
+        authViewModel.getAgenda(binding.txtCommitteeName.getText().toString())
+                .observe(this, agenda -> {
+
+                    try {
+                        binding.txtCommitteAgenda.setText(agenda.getAgendaDesc());
+                        Glide.with(this)
+                                .load(agenda.getImage())
+                                .into(binding.imgAgenda);
+                    } catch (Exception e) {
+
+                    }
+
+                });
 
 
     }
 
     private void setRecyclerView() {
-        adapter= new MemberAdapter(this,new ArrayList<>());
+        adapter = new MemberAdapter(this, new ArrayList<>());
         binding.membersRecyclerView.setAdapter(adapter);
-        binding.membersRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        binding.membersRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void bindData(Committee committee) {
@@ -86,7 +114,7 @@ private MemberAdapter adapter;
 //                });
 
         committeeViewModel.getAnyCommitteeMembers(committee.getCommitteeName())
-                .observe(this,strings -> {
+                .observe(this, strings -> {
 
                     adapter.setMembers(strings);
                     adapter.notifyDataSetChanged();

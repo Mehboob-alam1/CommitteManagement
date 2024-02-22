@@ -84,4 +84,33 @@ public class UserRepository {
                     Log.e("UserRepository", "Error adding image URL to Firestore", e);
                 });
     }
+
+    public MutableLiveData<Agenda> getAgenda(String committeeName){
+        MutableLiveData<Agenda> agendaLiveData = new MutableLiveData<>();
+
+        firestore.collection("committees")
+                .document(committeeName)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Retrieve the "agenda" field from the document
+                        Agenda agenda = documentSnapshot.get("agenda", Agenda.class);
+
+                        // Update the LiveData with the retrieved agenda
+                        agendaLiveData.postValue(agenda);
+                    } else {
+                        // Document doesn't exist
+                        agendaLiveData.postValue(null);
+                        Log.d("YourRepository", "Document does not exist");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                    agendaLiveData.postValue(null);
+                    Log.e("YourRepository", "Error getting agenda from Firestore", e);
+                });
+
+        return agendaLiveData;
+
+    }
 }

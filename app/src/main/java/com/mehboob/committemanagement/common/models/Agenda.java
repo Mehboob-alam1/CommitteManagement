@@ -29,4 +29,13 @@ public class Agenda {
     public void setImage(String image) {
         this.image = image;
     }
+
+
+    @Override
+    public String toString() {
+        return "Agenda{" +
+                "agendaDesc='" + agendaDesc + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }
