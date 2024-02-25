@@ -16,6 +16,7 @@
             android:layout_marginEnd="16dp"
             android:text="Upcoming event"
             android:padding="5dp"
+            android:id="@+id/txtEventType"
             android:textColor="@color/white"
             android:background="@drawable/upcoming_event_bg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-
+                 android:id="@+id/txtEventName"
                 android:text="Sports Final Results"
                 android:textSize="16sp" />
 
@@ -57,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:id="@+id/txtTimeDuration"
                     android:fontFamily="@font/poppins_regular"
                     android:text="2024-01-05 , 15:31" />
 
@@ -78,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:id="@+id/txtVenue"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Mushraf Hall" />
 

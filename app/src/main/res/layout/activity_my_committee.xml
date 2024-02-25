@@ -238,6 +238,40 @@
             </androidx.cardview.widget.CardView>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_weight="3"
+                    android:text="Events"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAllEvents"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/eventsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:itemCount="1"
+                tools:listitem="@layout/events" />
+
+
 
         </LinearLayout>
 

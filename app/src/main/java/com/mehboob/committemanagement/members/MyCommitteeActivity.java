@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.mehboob.committemanagement.R;
+import com.mehboob.committemanagement.common.adapters.EventAdapter;
 import com.mehboob.committemanagement.common.adapters.MemberAdapter;
 import com.mehboob.committemanagement.common.models.Committee;
 import com.mehboob.committemanagement.common.viewmodels.AuthViewModel;
@@ -31,6 +32,7 @@ public class MyCommitteeActivity extends AppCompatActivity {
     private CommitteeViewModel committeeViewModel;
     private AuthViewModel authViewModel;
     private MemberAdapter adapter;
+    private EventAdapter eventAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class MyCommitteeActivity extends AppCompatActivity {
         bindData(committee);
 
         setRecyclerView();
+        setEventRecyclerView();
 
         binding.btnAddAgenda.setOnClickListener(v -> {
             Intent i = new Intent(MyCommitteeActivity.this, AddAgendasActivity.class);
@@ -90,6 +93,13 @@ public class MyCommitteeActivity extends AppCompatActivity {
 
     }
 
+    private void setEventRecyclerView() {
+        eventAdapter= new EventAdapter(this, new ArrayList<>(),"1");
+        binding.eventsRecyclerView.setAdapter(eventAdapter);
+        binding.eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
     private void setRecyclerView() {
         adapter = new MemberAdapter(this, new ArrayList<>());
         binding.membersRecyclerView.setAdapter(adapter);
@@ -107,17 +117,20 @@ public class MyCommitteeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-//        committeeViewModel.getAnyCommittee(committee.getCommitteeName())
-//                .observe(this,committee1 -> {
-//
-//                    Toast.makeText(this, ""+committee1.toString(), Toast.LENGTH_SHORT).show();
-//                });
+
 
         committeeViewModel.getAnyCommitteeMembers(committee.getCommitteeName())
                 .observe(this, strings -> {
 
                     adapter.setMembers(strings);
                     adapter.notifyDataSetChanged();
+                });
+
+        committeeViewModel.getEventsForCommittee(committee.getCommitteeName())
+                .observe(this,events -> {
+                    eventAdapter.setList(events);
+                    eventAdapter.notifyDataSetChanged();
+
                 });
     }
 }
