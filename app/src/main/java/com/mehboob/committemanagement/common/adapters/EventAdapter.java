@@ -1,6 +1,7 @@
 package com.mehboob.committemanagement.common.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mehboob.committemanagement.R;
 import com.mehboob.committemanagement.common.models.Event;
+import com.mehboob.committemanagement.supervisor.EventsActivity;
 
 import java.util.List;
 
@@ -50,12 +52,20 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         holder.txtVenue.setText(event.getEventVenue());
         holder.txtEventType.setText("Upcoming event");
 
+
+//        holder.itemView.setOnClickListener(v -> {
+//            Intent i = new Intent(context, EventsActivity.class);
+//            context.startActivity(i);
+//
+//        });
+
     }
 
     @Override
     public int getItemCount() {
         if (item.equals("1"))
-            return 1;
+
+            return list.size();
         else
             return list.size();
 

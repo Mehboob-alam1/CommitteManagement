@@ -20,6 +20,7 @@ import com.mehboob.committemanagement.common.viewmodels.CommitteeViewModel;
 import com.mehboob.committemanagement.databinding.ActivityMyCommitteeBinding;
 import com.mehboob.committemanagement.supervisor.AddAgendasActivity;
 import com.mehboob.committemanagement.supervisor.AddEventsActivity;
+import com.mehboob.committemanagement.supervisor.EventsActivity;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class MyCommitteeActivity extends AppCompatActivity {
         bindData(committee);
 
         setRecyclerView();
-        setEventRecyclerView();
+       setEventRecyclerView();
 
         binding.btnAddAgenda.setOnClickListener(v -> {
             Intent i = new Intent(MyCommitteeActivity.this, AddAgendasActivity.class);
@@ -90,6 +91,12 @@ public class MyCommitteeActivity extends AppCompatActivity {
 
                 });
 
+
+        binding.btnAllEvents.setOnClickListener(v -> {
+            Intent i = new Intent(MyCommitteeActivity.this, EventsActivity.class);
+            i.putExtra("comname",committee.getCommitteeName());
+            startActivity(i);
+        });
 
     }
 
@@ -128,8 +135,11 @@ public class MyCommitteeActivity extends AppCompatActivity {
 
         committeeViewModel.getEventsForCommittee(committee.getCommitteeName())
                 .observe(this,events -> {
-                    eventAdapter.setList(events);
-                    eventAdapter.notifyDataSetChanged();
+                    if (events!=null){
+                        eventAdapter.setList(events);
+                        eventAdapter.notifyDataSetChanged();
+                    }
+
 
                 });
     }
