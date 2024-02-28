@@ -1,5 +1,6 @@
 package com.mehboob.committemanagement.common.repositories;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -20,8 +21,10 @@ public class CommitteeRepo {
     private MutableLiveData<Boolean> isAdded;
     private MutableLiveData<List<Committee>> committeesLiveData;
     private MutableLiveData<List<String>> committeeMutableLiveData;
+    private Application application;
+    private Boolean isAddedOut;
 
-    public CommitteeRepo() {
+    public CommitteeRepo( ) {
         firestore = FirebaseFirestore.getInstance();
         isAdded = new MutableLiveData<>();
         committeesLiveData= new MutableLiveData<>();
@@ -117,7 +120,8 @@ public class CommitteeRepo {
                 .set(event)
                 .addOnSuccessListener(aVoid -> {
                     // Event added successfully
-                    eventAddedLiveData.postValue(true);
+                     addEventOut(event);
+                      eventAddedLiveData.setValue(true);
                     Log.d("YourRepository", "Event added to Firestore");
                 })
                 .addOnFailureListener(e -> {
@@ -129,6 +133,15 @@ public class CommitteeRepo {
 
         return eventAddedLiveData;
     }
+
+    public void addEventOut(Event event){
+
+
+        firestore.collection("Events")
+                .document(event.getEventId())
+                .set(event);
+    }
+
 
 
     public LiveData<List<Event>> getEventsForCommittee(String committeeName) {

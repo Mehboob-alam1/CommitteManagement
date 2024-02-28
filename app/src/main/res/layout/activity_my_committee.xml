@@ -144,6 +144,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:gravity="center"
+                        android:id="@+id/supervisorLayout"
+                        android:visibility="gone"
+
                         android:padding="8dp">
 
 

@@ -2,9 +2,11 @@ package com.mehboob.committemanagement.common.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,7 +52,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         holder.txtEventName.setText(event.getEventName());
         holder.txtTimeDuration.setText(event.getEventDuration());
         holder.txtVenue.setText(event.getEventVenue());
-        holder.txtEventType.setText("Upcoming event");
+        holder.txtEventType.setText(event.getStatus());
+
 
 
 //        holder.itemView.setOnClickListener(v -> {
@@ -60,21 +63,31 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
 //        });
 
     }
-
     @Override
     public int getItemCount() {
-        if (item.equals("1"))
-
+        if (item.equals("1")) {
             return list.size();
-        else
-            return list.size();
-
-
+        } else {
+            return 0; // or return a different value based on your requirement
+        }
     }
+
+
+//    @Override
+//    public int getItemCount() {
+//        if (item.equals("1"))
+//
+//            return list.size();
+//        else
+//            return list.size();
+//
+//
+//    }
 
     public class Holder extends RecyclerView.ViewHolder {
 
         private TextView txtEventName, txtTimeDuration, txtVenue, txtEventType;
+        private LinearLayout layout;
 
         public Holder(@NonNull View itemView) {
             super(itemView);

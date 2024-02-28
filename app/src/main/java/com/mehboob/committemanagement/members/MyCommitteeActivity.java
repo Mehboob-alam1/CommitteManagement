@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.common.reflect.TypeToken;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.mehboob.committemanagement.R;
 import com.mehboob.committemanagement.common.adapters.EventAdapter;
@@ -34,6 +36,9 @@ public class MyCommitteeActivity extends AppCompatActivity {
     private AuthViewModel authViewModel;
     private MemberAdapter adapter;
     private EventAdapter eventAdapter;
+    private String authId;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class MyCommitteeActivity extends AppCompatActivity {
         binding = ActivityMyCommitteeBinding.inflate(getLayoutInflater());
         committeeViewModel = new ViewModelProvider(this).get(CommitteeViewModel.class);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+
+        authId=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         setContentView(binding.getRoot());
@@ -141,6 +148,18 @@ public class MyCommitteeActivity extends AppCompatActivity {
                     }
 
 
+                });
+
+
+        authViewModel.getCurrentUserData(authId)
+                .observe(this,user -> {
+
+                    String name= user.getFirstName() +" " +user.getLastName();
+                    if(name.equals(committee.getCommitteeSupervisor())){
+                        binding.supervisorLayout.setVisibility(View.VISIBLE);
+                    }else{
+                        Toast.makeText(this, "user", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 }

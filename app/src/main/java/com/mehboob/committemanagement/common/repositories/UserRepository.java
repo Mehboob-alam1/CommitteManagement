@@ -35,6 +35,32 @@ public class UserRepository {
                 .addOnFailureListener(e -> Log.e("UserRepository", "Error saving user data", e));
     }
 
+public LiveData<User> getCurrentUser(String userId){
+
+    MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
+
+    firestore.collection("users")
+                .document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Retrieve the "agenda" field from the document
+                        User agenda = documentSnapshot.toObject(User.class);
+
+                        // Update the LiveData with the retrieved agenda
+                        userMutableLiveData.postValue(agenda);
+                    } else {
+                        // Document doesn't exist
+                        userMutableLiveData.postValue(null);
+                        Log.d("YourRepository", "Document does not exist");
+                    }
+                }).addOnFailureListener(e -> {
+                    userMutableLiveData.postValue(null);
+            });
+
+    return userMutableLiveData;
+}
+
     public MutableLiveData<Boolean> getIfUpload() {
         return ifUpload;
     }

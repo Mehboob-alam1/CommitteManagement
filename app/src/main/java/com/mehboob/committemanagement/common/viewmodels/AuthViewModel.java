@@ -38,6 +38,11 @@ public class AuthViewModel extends ViewModel {
         return authRepository.signUp(email,password);
     }
 
+
+    public LiveData<User> getCurrentUserData(String userId){
+      return   userRepository.getCurrentUser(userId);
+    }
+
     public void uploadCommitteeAgendaImage(String agenda, Uri image,String committeeName){
         userRepository.uploadCommitteeAgendaImage(agenda, image, committeeName);
     }

@@ -12,18 +12,28 @@ public class Event {
     private String eventDuration;
     private String eventSuperVisor;
 
+    private String status;
+
     public Event() {
     }
 
-    public Event(String eventId, String eventName, String eventVenue, String eventDesc, String eventDuration, String eventSuperVisor) {
+    public Event(String eventId, String eventName, String eventVenue, String eventDesc, String eventDuration, String eventSuperVisor, String status) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventVenue = eventVenue;
         this.eventDesc = eventDesc;
         this.eventDuration = eventDuration;
         this.eventSuperVisor = eventSuperVisor;
+        this.status = status;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getEventId() {
         return eventId;

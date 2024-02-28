@@ -62,7 +62,7 @@ public class AddEventsActivity extends AppCompatActivity {
                 String eventSuperVisor= binding.etEventSupervisor.getText().toString();
 
 
-                Event event= new Event(eventId,eventName,eventVenue,eventDesc,eventDuration,eventSuperVisor);
+                Event event= new Event(eventId,eventName,eventVenue,eventDesc,eventDuration,eventSuperVisor,"Upcoming");
 
 
                 addEvent(event,comname);
@@ -81,6 +81,7 @@ public class AddEventsActivity extends AppCompatActivity {
                     binding.progressBar.setVisibility(View.GONE);
                     if (aBoolean){
                         Toast.makeText(this, "Event added", Toast.LENGTH_SHORT).show();
+                        finish();
                     }else{
                         Toast.makeText(this, "Event not added", Toast.LENGTH_SHORT).show();
                     }
