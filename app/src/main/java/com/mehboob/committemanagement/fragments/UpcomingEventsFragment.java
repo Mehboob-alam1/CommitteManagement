@@ -59,6 +59,7 @@ public class UpcomingEventsFragment extends Fragment {
                         // Convert each document to your EventModel class (customize as per your needs)
                         Event event = documentSnapshot.toObject(Event.class);
 
+
                         eventsList.add(event);
                     }
 
@@ -71,30 +72,7 @@ public class UpcomingEventsFragment extends Fragment {
                     Log.e("YourRepository", "Error getting events from Firestore", e);
                 });
 
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    List<Event> events = new ArrayList<>();
-//
-//
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//
-//                        Event event = document.toObject(Event.class);
-//                        Toast.makeText(getContext(), ""+event.getEventName(), Toast.LENGTH_SHORT).show();
-//                        events.add(event);
-//                    }
-//
-//                    eventAdapter = new EventAdapter(getContext(), events, "1");
-//                    recyclerView.setAdapter(eventAdapter);
-//                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//
-//                } else {
-//                    Toast.makeText(getContext(), "document not  exist", Toast.LENGTH_SHORT).show();                        // Handle each document here
-//                }
-//            }
-//        });
+
 
         return  view;
     }

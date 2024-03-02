@@ -64,6 +64,13 @@ public class MyCommitteeActivity extends AppCompatActivity {
         binding.txtDesignation.setText("SuperVisor");
 
 
+        binding.imgArrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         bindData(committee);
 
         setRecyclerView();
@@ -132,6 +139,14 @@ public class MyCommitteeActivity extends AppCompatActivity {
         super.onResume();
 
 
+        authViewModel.getCurrentUserData(authId).observe(this, user -> {
+            String name = user.getFirstName() + " " + user.getLastName();
+            if (name.equals(committee.getCommitteeSupervisor())) {
+                eventAdapter.setSupervisor(true);
+            } else {
+                eventAdapter.setSupervisor(false);
+            }
+        });
 
         committeeViewModel.getAnyCommitteeMembers(committee.getCommitteeName())
                 .observe(this, strings -> {

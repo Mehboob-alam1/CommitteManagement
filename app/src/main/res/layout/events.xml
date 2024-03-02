@@ -86,28 +86,91 @@
                     android:text="Mushraf Hall" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="8dp"
                 android:id="@+id/layout"
-                android:visibility="gone"
-                android:orientation="horizontal">
-
-                <TextView
+                android:background="@drawable/edit_text_back"
+                android:backgroundTint="#EAE4E4"
+                >
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Mark as complete"
-                    android:layout_weight="1"/>
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Mark as complete"
 
-                />
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
 
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/baseline_edit_note_24"
+                        android:id="@+id/btnEventComplete"
+
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Edit and Information"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnEventEdit"
+
+                        android:src="@drawable/baseline_edit_note_24"
+
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Delete Event"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnEventDelete"
+                        android:src="@drawable/baseline_folder_delete_24"
+
+                        />
+
+                </LinearLayout>
             </LinearLayout>
 
 

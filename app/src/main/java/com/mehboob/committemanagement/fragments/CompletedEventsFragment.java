@@ -55,7 +55,6 @@ public class CompletedEventsFragment extends Fragment {
                     for (DocumentSnapshot document : task.getResult()) {
 
                         Event event = document.toObject(Event.class);
-                        Toast.makeText(getContext(), ""+event.getEventName(), Toast.LENGTH_SHORT).show();
                         events.add(event);
                     }
 

@@ -89,27 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        Fragment[] fragments = new Fragment[]{
-//                new ProgressEventsFragment(),
-//                new UpcomingEventsFragment(),
-//                new CompletedEventsFragment()
-//        };
-//        String[] tabTitles = new String[]{"Progress", "Upcoming", "Completed"};
-//
 
-//
-//
-//        tabLayout.setupWithViewPager(viewPager);
-//
-//        MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-//
-//        myAdapter.addFragment(new ProgressEventsFragment() ,"Progress");
-//        myAdapter.addFragment(new CompletedEventsFragment() ,"Completed");
-//        myAdapter.addFragment(new CompletedEventsFragment() ,"Completed ");
-//
-//
-//        viewPager.setAdapter(myAdapter);
 
 
 
