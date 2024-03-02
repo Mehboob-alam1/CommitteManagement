@@ -1,77 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".members.MyCommitteeActivity">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".members.MyCommitteeActivity"
 
-        <ImageView
-            android:id="@+id/imgArrowBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:src="@drawable/baseline_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        >
 
-
-
-
-        <TextView
-            android:id="@+id/txtCommitteeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Sports Committee"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgMore"
-            app:layout_constraintStart_toEndOf="@+id/imgArrowBack"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/imgMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgArrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
+                android:id="@+id/txtCommitteeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Members"
+                android:text="Sports Committee"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imgMore"
@@ -79,206 +45,240 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/membersRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_members" />
-
-
-            <TextView
+            <ImageView
+                android:id="@+id/imgMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Supervisor"
-                android:textSize="16sp" />
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="5dp">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-
-                        android:padding="8dp">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/member"
-                            app:tint="@null" />
-
-                        <TextView
-                            android:id="@+id/txtName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="Mehboob Alam" />
-
-                        <TextView
-                            android:id="@+id/txtDesignation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_light"
-                            android:text="Member" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:gravity="center"
-                        android:id="@+id/supervisorLayout"
-                        android:visibility="gone"
-
-                        android:padding="8dp">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/edit_text_back"
-                            android:fontFamily="@font/poppins_regular"
-                            android:padding="8dp"
-                            android:id="@+id/btnAddAgenda"
-                            android:text="Add Agenda" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/edit_text_back"
-                            android:fontFamily="@font/poppins_regular"
-                            android:padding="8dp"
-                            android:text="Add Report" />
-
-                        <TextView
-                            android:id="@+id/btnAddEvent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/edit_text_back"
-                            android:fontFamily="@font/poppins_regular"
-                            android:padding="8dp"
-                            android:text="Add Event" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="5dp">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:padding="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Agendas"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/baseline_arrow_forward_ios_24" />
-
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:padding="8dp"
-                        android:ellipsize="end"
-                        android:id="@+id/txtCommitteAgenda"
-                        android:lineSpacingMultiplier="1.3"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""/>
-
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_margin="5dp"
-                        android:id="@+id/imgAgenda"
-                        app:tint="@null" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="16dp">
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:fontFamily="@font/poppins_bold"
-                    android:layout_weight="3"
-                    android:text="Events"
-                    android:textSize="16sp" />
+                    android:text="Members"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgMore"
+                    app:layout_constraintStart_toEndOf="@+id/imgArrowBack"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/membersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_members" />
+
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnAllEvents"
-                    android:src="@drawable/baseline_arrow_forward_ios_24"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Supervisor"
+                    android:textSize="16sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/member"
+                                app:tint="@null" />
+
+                            <TextView
+                                android:id="@+id/txtName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Mehboob Alam" />
+
+                            <TextView
+                                android:id="@+id/txtDesignation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Member" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/supervisorLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:gravity="center"
+                            android:padding="8dp"
+
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:id="@+id/btnAddAgenda"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/edit_text_back"
+                                android:fontFamily="@font/poppins_regular"
+                                android:padding="8dp"
+                                android:text="Add Agenda" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/edit_text_back"
+                                android:fontFamily="@font/poppins_regular"
+                                android:padding="8dp"
+                                android:text="Add Report" />
+
+                            <TextView
+                                android:id="@+id/btnAddEvent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="@drawable/edit_text_back"
+                                android:fontFamily="@font/poppins_regular"
+                                android:padding="8dp"
+                                android:text="Add Event" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:padding="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="Agendas"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtCommitteAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_medium"
+                            android:lineSpacingMultiplier="1.3"
+                            android:padding="8dp"
+                            android:text="" />
+
+                        <ImageView
+                            android:id="@+id/imgAgenda"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_margin="5dp"
+                            android:scaleType="centerCrop"
+                            app:tint="@null" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="3"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Events"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/btnAllEvents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eventsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/events" />
+
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/eventsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="16dp"
-                tools:itemCount="1"
-                tools:listitem="@layout/events" />
-
-
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,8 @@ import java.util.UUID;
 
 public class AddEventsActivity extends AppCompatActivity {
   private   ActivityAddEventsBinding binding;
-  private String comname,superv;
+  private String comname,superv ,eventId;
+
   private CommitteeViewModel committeeViewModel;
 
     @Override
@@ -35,6 +36,7 @@ public class AddEventsActivity extends AppCompatActivity {
 
 
         comname= getIntent().getStringExtra("comname");
+        eventId = getIntent().getStringExtra("eventId");
         superv= getIntent().getStringExtra("superv");
 
 
@@ -62,8 +64,16 @@ public class AddEventsActivity extends AppCompatActivity {
                 String eventSuperVisor= binding.etEventSupervisor.getText().toString();
 
 
-                Event event= new Event(eventId,eventName,eventVenue,eventDesc,eventDuration,eventSuperVisor,"Upcoming");
-
+//                Event event= new Event(eventId,eventName,eventVenue,eventDesc,eventDuration,eventSuperVisor,"Upcoming");
+                Event event;
+                if (eventId != null) {
+                    // Update existing event
+                    event = new Event(eventId, eventName, eventVenue, eventDesc, eventDuration, eventSuperVisor, "Upcoming");
+                } else {
+                    // Create new event
+                    eventId = UUID.randomUUID().toString();
+                    event = new Event(eventId, eventName, eventVenue, eventDesc, eventDuration, eventSuperVisor, "Upcoming");
+                }
 
                 addEvent(event,comname);
 

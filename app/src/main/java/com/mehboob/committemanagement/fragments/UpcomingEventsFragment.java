@@ -1,6 +1,7 @@
 package com.mehboob.committemanagement.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,8 @@ public class UpcomingEventsFragment extends Fragment {
     RecyclerView recyclerView;
     private  EventAdapter eventAdapter;
     private FirebaseFirestore firestore;
+    private ProgressDialog progressDialog;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,7 +46,11 @@ public class UpcomingEventsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_upcoming_events_fragment, container, false);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
+        showProgressDialog();
         Toast.makeText(getContext(), "Upcoming", Toast.LENGTH_SHORT).show();
         recyclerView = view.findViewById(R.id.eventsRecyclerViewUpcop);
 
@@ -66,9 +73,16 @@ public class UpcomingEventsFragment extends Fragment {
                     // Update LiveData with the list of events
                     eventAdapter = new EventAdapter(getContext(), eventsList, "1");
                    recyclerView.setAdapter(eventAdapter);
-                   recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));                })
+                   recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                hideProgressDialog();
+
+
+                })
                 .addOnFailureListener(e -> {
                     // Handle failure
+                    hideProgressDialog();
+
+                    Toast.makeText(getContext(), ""+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     Log.e("YourRepository", "Error getting events from Firestore", e);
                 });
 
@@ -76,4 +90,17 @@ public class UpcomingEventsFragment extends Fragment {
 
         return  view;
     }
+
+    private void showProgressDialog() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    private void hideProgressDialog() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
 }

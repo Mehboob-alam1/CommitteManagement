@@ -1,5 +1,6 @@
 package com.mehboob.committemanagement.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,7 @@ public class ProgressEventsFragment extends Fragment {
     RecyclerView recyclerView;
     private EventAdapter eventAdapter;
     private FirebaseFirestore firestore;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -39,9 +41,14 @@ public class ProgressEventsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_progress_events, container, false);
 
 
-        recyclerView= view.findViewById(R.id.eventsRecyclerViewProg);
+        recyclerView = view.findViewById(R.id.eventsRecyclerViewProg);
 
 //        currentTime();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+
+        showProgressDialog();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference eventsRef = db.collection("Events");
@@ -62,13 +69,12 @@ public class ProgressEventsFragment extends Fragment {
                     // Update LiveData with the list of events
                     eventAdapter = new EventAdapter(getContext(), eventsList, "1");
                     recyclerView.setAdapter(eventAdapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));                })
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                })
                 .addOnFailureListener(e -> {
                     // Handle failure
                     Log.e("YourRepository", "Error getting events from Firestore", e);
                 });
-
-
 
 
         return view;
@@ -92,7 +98,7 @@ public class ProgressEventsFragment extends Fragment {
         System.out.println("Comparison Time: " + compareTime.getTime().toString());
         System.out.println("Time Difference: " + timeDifference);
 
-        Toast.makeText(getContext(), ""+currentDate, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "" + currentDate, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -107,4 +113,18 @@ public class ProgressEventsFragment extends Fragment {
         calendar.add(Calendar.HOUR, 1); // Assuming events last for 1 hour
         return calendar.getTime();
     }
+
+
+    private void showProgressDialog() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    private void hideProgressDialog() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
 }

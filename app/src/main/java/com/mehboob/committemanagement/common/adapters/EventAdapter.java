@@ -1,5 +1,8 @@
 package com.mehboob.committemanagement.common.adapters;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
@@ -11,15 +14,21 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mehboob.committemanagement.R;
+import com.mehboob.committemanagement.common.models.Committee;
 import com.mehboob.committemanagement.common.models.Event;
+import com.mehboob.committemanagement.common.viewmodels.CommitteeViewModel;
+import com.mehboob.committemanagement.members.MyCommitteeActivity;
+import com.mehboob.committemanagement.supervisor.AddEventsActivity;
 import com.mehboob.committemanagement.supervisor.EventsActivity;
 
 import java.util.List;
@@ -29,6 +38,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
     private List<Event> list;
 
     private String item;
+    private  Committee committee;
     private boolean isSupervisor;
 
 
@@ -36,7 +46,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         this.context = context;
         this.list = list;
         this.item = items;
-        this.isSupervisor = false; // Default value
+        this.isSupervisor = false;
+
 
     }
 
@@ -58,8 +69,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         notifyDataSetChanged();
     }
 
+
+    @SuppressLint("RecyclerView")
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder,  int position) {
 
         Event event = list.get(position);
 
@@ -69,6 +82,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         holder.txtEventType.setText(event.getStatus());
 
 
+
         if (isSupervisor) {
             holder.layout.setVisibility(View.VISIBLE);
         } else {
@@ -76,7 +90,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
 
         }
 
-
+        String eventId = event.getEventId();
 
 
 
@@ -84,46 +98,40 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
             @Override
             public void onClick(View v) {
 
+
+                FirebaseFirestore.getInstance().collection("committees").document(eventId)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                                list.remove(position);
+                                // Notify the adapter of the change
+                                notifyItemRemoved(position);
+
+                                Toast.makeText(context, "events is delete"  , Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        . addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                Toast.makeText(context, " not delete"  +e.getLocalizedMessage(),  Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
             }
 
         });
 
-        holder.btnDeleteEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition(); // Get the position of the item in the RecyclerView
-                if (position != RecyclerView.NO_POSITION) {
-                    Event event = list.get(position); // Get the event at the specified position
-                    String eventId = event.getEventId(); // Assuming getId() returns the document ID
-
-                    // Delete the document from Firestore
-                    FirebaseFirestore.getInstance()
-                            .collection("events")
-                            .document(eventId)
-                            .delete()
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // Document successfully deleted
-                                    list.remove(position); // Remove the event from the list
-                                    notifyItemRemoved(position); // Notify the adapter that an item has been removed at the specified position
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    // Handle any errors
-                                    Log.e("EventAdapter", "Error deleting document", e);
-                                }
-                            });
-                }
-            }
-        });
 
 
         holder.btnEventComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
             }
         });
@@ -131,6 +139,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.Holder> {
         holder.btnEditEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, AddEventsActivity.class);
+                intent.putExtra("eventId", event.getEventId());
+                context.startActivity(intent);
+
 
             }
         });

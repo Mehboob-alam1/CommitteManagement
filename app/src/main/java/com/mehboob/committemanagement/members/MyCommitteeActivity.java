@@ -34,6 +34,7 @@ public class MyCommitteeActivity extends AppCompatActivity {
     private Committee committee;
     private CommitteeViewModel committeeViewModel;
     private AuthViewModel authViewModel;
+    private String isSupervisor;
     private MemberAdapter adapter;
     private EventAdapter eventAdapter;
     private String authId;
@@ -85,7 +86,6 @@ public class MyCommitteeActivity extends AppCompatActivity {
         binding.btnAddEvent.setOnClickListener(v -> {
             Intent i = new Intent(MyCommitteeActivity.this, AddEventsActivity.class);
             i.putExtra("comname", binding.txtCommitteeName.getText().toString());
-            i.putExtra("superv", committee.getCommitteeSupervisor());
             startActivity(i);
         });
 
@@ -109,6 +109,7 @@ public class MyCommitteeActivity extends AppCompatActivity {
         binding.btnAllEvents.setOnClickListener(v -> {
             Intent i = new Intent(MyCommitteeActivity.this, EventsActivity.class);
             i.putExtra("comname",committee.getCommitteeName());
+
             startActivity(i);
         });
 

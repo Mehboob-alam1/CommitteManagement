@@ -1,6 +1,7 @@
 package com.mehboob.committemanagement.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ public class CompletedEventsFragment extends Fragment {
     RecyclerView recyclerView;
     private  EventAdapter eventAdapter;
     private FirebaseFirestore firestore;
+    private ProgressDialog progressDialog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +45,12 @@ public class CompletedEventsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.eventsRecyclerViewComp);
 
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+
+        showProgressDialog();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference eventsRef = db.collection("Events");
 
@@ -62,14 +71,28 @@ public class CompletedEventsFragment extends Fragment {
                     recyclerView.setAdapter(eventAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+                    hideProgressDialog();
 
                 } else {
-                    Toast.makeText(getContext(), "document not  exist", Toast.LENGTH_SHORT).show();                        // Handle each document here
+                    Toast.makeText(getContext(), "document not  exist", Toast.LENGTH_SHORT).show();
+                    hideProgressDialog();
+// Handle each document here
                 }
             }
         });
         return  view;
     }
 
+    private void showProgressDialog() {
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
+
+    private void hideProgressDialog() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
 
 }
